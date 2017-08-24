@@ -2,7 +2,7 @@
 library("Rmpi")
 iterations=100000000
 
-n=mpi.universe.size()-1
+n=mpi.universe.size() - 1
 print(paste("universe is: ", n))
 
 print(paste("starting ", n, " slaves"))
@@ -14,8 +14,10 @@ mpi.spawn.Rslaves(nslaves=n)
 
 print("broadcasting iters_per_slave")
 mpi.bcast(iters_per_slave,1)
+
 print("broadcasting command")
-#mpi.bcast.cmd(source('./pi_sim.R'))
+mpi.bcast.cmd(source('./pi_sim.R'))
+
 print("exec-ing command")
 results <- mpi.remote.exec(sim.pi(), ret=TRUE)
 
