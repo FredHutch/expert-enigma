@@ -5,4 +5,5 @@ hello <- function(){
       "of",mpi.comm.size(),
       "on host", Sys.info()[c("nodename")]
     )
+    return(1)
 }

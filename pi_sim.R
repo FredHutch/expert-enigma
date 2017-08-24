@@ -1,8 +1,5 @@
 #!/usr/bin/env Rscript
 
-# pi.R <seed> <iterations>
-
-print(paste("got", iters_per_slave, "iterations"))
 sim.pi <- function() {
     iterations = iters_per_slave
     print("generating vectors")
@@ -11,5 +8,6 @@ sim.pi <- function() {
     # Test if draws are inside the unit circle
     draw.pos <- ifelse(x.pos^2 + y.pos^2 <= 1, TRUE, FALSE)
     draws.in <- length(which(draw.pos == TRUE))
+    print("generating vectors")
     return(draws.in)
 }

@@ -1,5 +1,6 @@
 #!/usr/bin/env Rscript
 library("Rmpi")
+source("./libhello.R")
 
 n=mpi.universe.size() - 1
 print(paste("universe is: ", n))
@@ -7,7 +8,8 @@ print(paste("universe is: ", n))
 print("creating mpi machine")
 mpi.spawn.Rslaves(nslaves=n)
 
-mpi.bcast.cmd(cmd=source("./libhello.R"))
+print("broacasting functions")
+mpi.bcast.Rfun2slave()
 print("exec-ing command")
 mpi.remote.exec(hello(), ret=TRUE)
 
