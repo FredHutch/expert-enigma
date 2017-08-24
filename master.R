@@ -15,7 +15,7 @@ print("creating mpi machine")
 mpi.spawn.Rslaves(nslaves=n)
 
 print("broadcasting iters_per_slave")
-mpi.bcast(iters_per_slave,1)
+mpi.bcast.Robj2slave(iters_per_slave)
 
 print("broadcasting functions")
 mpi.bcast.Rfun2slave()
@@ -23,6 +23,7 @@ mpi.bcast.Rfun2slave()
 print("exec-ing command")
 results <- mpi.remote.exec(sim.pi(), ret=TRUE)
 
+print(paste("pi is:", 4/(iterations/Reduce("+", results))))
 print("Done")
 
 mpi.close.Rslaves()
